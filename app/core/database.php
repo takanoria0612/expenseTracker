@@ -1,5 +1,7 @@
+<!-- app/core/database.php -->
+
 <?php
-// config/database.phpの内容を取得
+
 $dbConfig = require '../../config/database.php';
 
 class Database {
