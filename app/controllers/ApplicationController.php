@@ -1,3 +1,4 @@
+<!-- controllers/ApplicationController.php -->
 <?php
 require_once 'app/models/Application.php';
 require_once 'app/models/ApplicationDetail.php';
