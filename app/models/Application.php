@@ -43,7 +43,21 @@ class Application {
         
         return $result ? $result['ApplicationNo'] : null;
     }
+    // 申請の検索
+    public function search($keyword) {
+        $sql = "SELECT * FROM applications WHERE ApplicationNo LIKE :keyword ORDER BY ApplicationNo DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':keyword' => '%' . $keyword . '%']);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    // 申請の削除
+    public function delete($applicationNo) {
+        $sql = "DELETE FROM applications WHERE ApplicationNo = :applicationNo";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':applicationNo' => $applicationNo]);
+        return $stmt->rowCount();
+    }
     // その他のメソッド...
 }
 

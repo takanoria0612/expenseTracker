@@ -25,5 +25,23 @@ class ApplicationDetail {
         return $stmt->rowCount();
     }
 
+    
+    // 申請詳細の検索（applicationNoに基づく）
+    public function searchByApplicationNo($applicationNo) {
+        $sql = "SELECT * FROM application_details WHERE ApplicationNo = :applicationNo";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':applicationNo' => $applicationNo]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // 申請詳細の削除
+    public function delete($detailID) {
+        $sql = "DELETE FROM application_details WHERE DetailID = :detailID";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':detailID' => $detailID]);
+        return $stmt->rowCount();
+    }
+    
+    
     // 申請詳細に関する他のメソッド
 }
